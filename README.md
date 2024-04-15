@@ -88,11 +88,9 @@ You need to review and amend the following:
 You will need to modify the following references to point to your installed game location:
 
 - 0Harmony
-- Assembly-CSharp-firstpass_publicized
-- Assembly-CSharp_publicized
+- Assembly-CSharp
 - BepInEx
 - UnityEngine
-- UnityEngine.CoreModule
 
 #### Post-build scripts
 

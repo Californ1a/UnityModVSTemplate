@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Item">
   <TemplateData>
     <DefaultName>PluginClass.cs</DefaultName>
@@ -10,10 +11,7 @@
   <TemplateContent>
     <References>
       <Reference>
-        <Assembly>Assembly-CSharp_publicized</Assembly>
-      </Reference>
-      <Reference>
-        <Assembly>Assembly-CSharp-firstpass_publicized</Assembly>
+        <Assembly>Assembly-CSharp</Assembly>
       </Reference>
       <Reference>
         <Assembly>BepInEx</Assembly>

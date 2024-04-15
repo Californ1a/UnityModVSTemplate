@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>Unity Mod (BepInEx)</Name>
@@ -12,9 +13,10 @@
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <Icon>__TemplateIcon.png</Icon>
-	<LanguageTag>CSharp</LanguageTag>
-	<PlatformTag>Windows</PlatformTag>
-	<ProjectTypeTag>Library</ProjectTypeTag>
+	  <LanguageTag>CSharp</LanguageTag>
+	  <PlatformTag>Windows</PlatformTag>
+	  <ProjectTypeTag>Library</ProjectTypeTag>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="UnityModTemplate.csproj" File="UnityModTemplate.csproj" ReplaceParameters="true">

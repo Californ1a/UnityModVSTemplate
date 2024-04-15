@@ -8,12 +8,12 @@ namespace $safeprojectname$.Utils
     internal static class ModUtils
     {
         /// <summary>
-        /// Example static method to return Players current location / transform
+        /// Example static method to return Players current profile data
         /// </summary>
         /// <returns></returns>
-        public static Transform GetPlayerTransform()
+        public static Profile GetPlayerProfile()
         {
-            return Player.main.transform;
+            return PlayerManager.Current_.profile;
         }
     }
 }
