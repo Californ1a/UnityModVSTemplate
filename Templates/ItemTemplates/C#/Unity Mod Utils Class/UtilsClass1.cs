@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
-namespace $rootnamespace$
+namespace $rootnamespace$.Utils
 {
     /// <summary>
     /// Static utilities class for common functions and properties to be used within your mod code
@@ -8,12 +9,12 @@ namespace $rootnamespace$
     internal static class $safeitemname$
     {
         /// <summary>
-        /// Example static method to return Players current location / transform
+        /// Example static method to return Players current medal count
         /// </summary>
         /// <returns></returns>
-        public static Transform GetPlayerTransform()
+        public static long GetPlayerMedalCount()
         {
-            return Player.main.transform;
+            return G.Sys.ProfileManager_.CurrentProfile_.Progress_.TotalMedalCount_;
         }
     }
 }

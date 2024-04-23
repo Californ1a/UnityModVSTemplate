@@ -8,12 +8,11 @@ namespace $safeprojectname$.Utils
     internal static class ModUtils
     {
         /// <summary>
-        /// Example static method to return Players current profile data
+        /// Example static method to return Players current medal count
         /// </summary>
-        /// <returns></returns>
-        public static Profile GetPlayerProfile()
+        public static long GetPlayerMedalCount()
         {
-            return PlayerManager.Current_.profile;
+            return G.Sys.ProfileManager_.CurrentProfile_.Progress_.TotalMedalCount_;
         }
     }
 }

@@ -3,24 +3,15 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
+using $safeprojectname$.Properties;
 
 namespace $safeprojectname$
 {
     // TODO Review this file and update to your own requirements.
 
-    [BepInPlugin(MyGUID, PluginName, VersionString)]
+    [BepInPlugin(ModInfo.MyGUID, ModInfo.PluginName, ModInfo.Version)]
     public class $safeprojectname$Plugin : BaseUnityPlugin
     {
-        // Mod specific details. MyGUID should be unique, and follow the reverse domain pattern
-        // e.g.
-        // com.mynameororg.pluginname
-        // Version should be a valid version string.
-        // e.g.
-        // 1.0.0
-        private const string MyGUID = "com.$username$.$safeprojectname$";
-        private const string PluginName = "$safeprojectname$";
-        private const string VersionString = "1.0.0";
-
         // Config entry key strings
         // These will appear in the config file created by BepInEx and can also be used
         // by the OnSettingsChange event to determine which setting has changed.
@@ -36,21 +27,26 @@ namespace $safeprojectname$
         public static ConfigEntry<int> IntExample;
         public static ConfigEntry<KeyboardShortcut> KeyboardShortcutExample;
 
-        private static readonly Harmony Harmony = new Harmony(MyGUID);
-        public static ManualLogSource Log = new ManualLogSource(PluginName);
+        private static readonly Harmony Harmony = new Harmony(ModInfo.MyGUID);
+        internal static ManualLogSource Log;
 
         /// <summary>
         /// Initialise the configuration settings and patch methods
         /// </summary>
         private void Awake()
         {
+            // Sets up our static Log, so it can be used elsewhere in code.
+            // .e.g.
+            // $safeprojectname$Plugin.Log.LogDebug("Debug Message to BepInEx log file");
+			Log = BepInEx.Logging.Logger.CreateLogSource(ModInfo.PluginName);
+
             // Float configuration setting example
             // TODO Change this code or remove the code if not required.
-            FloatExample = Config.Bind("General",    // The section under which the option is shown
-                FloatExampleKey,                            // The key of the configuration option
-                1.0f,                            // The default value
-                new ConfigDescription("Example float configuration setting.",         // Description that appears in Configuration Manager
-                    new AcceptableValueRange<float>(0.0f, 10.0f)));     // Acceptable range, enabled slider and validation in Configuration Manager
+            FloatExample = Config.Bind("General", // The section under which the option is shown
+                FloatExampleKey, // The key of the configuration option
+                1.0f, // The default value
+                new ConfigDescription("Example float configuration setting.", // Description that appears in Configuration Manager
+                    new AcceptableValueRange<float>(0.0f, 10.0f))); // Acceptable range, enabled slider and validation in Configuration Manager
 
             // Int setting example
             // TODO Change this code or remove the code if not required.
@@ -73,14 +69,9 @@ namespace $safeprojectname$
             KeyboardShortcutExample.SettingChanged += ConfigSettingChanged;
 
             // Apply all of our patches
-            Logger.LogInfo($"PluginName: {PluginName}, VersionString: {VersionString} is loading...");
+            Logger.LogInfo("Loading...");
             Harmony.PatchAll();
-            Logger.LogInfo($"PluginName: {PluginName}, VersionString: {VersionString} is loaded.");
-
-            // Sets up our static Log, so it can be used elsewhere in code.
-            // .e.g.
-            // $safeprojectname$Plugin.Log.LogDebug("Debug Message to BepInEx log file");
-            Log = Logger;
+            Logger.LogInfo("Loaded");
         }
 
         /// <summary>
@@ -107,10 +98,7 @@ namespace $safeprojectname$
             SettingChangedEventArgs settingChangedEventArgs = e as SettingChangedEventArgs;
 
             // Check if null and return
-            if (settingChangedEventArgs == null)
-            {
-                return;
-            }
+            if (settingChangedEventArgs == null) return;
 
             // Example Float Shortcut setting changed handler
             if (settingChangedEventArgs.ChangedSetting.Definition.Key == FloatExampleKey)
